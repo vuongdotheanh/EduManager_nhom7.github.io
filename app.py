@@ -1,4 +1,5 @@
 import re
+import os
 import uvicorn
 from json import dumps as json_dumps
 from fastapi import FastAPI, Request, Depends, HTTPException, Response
@@ -13,8 +14,8 @@ from email.mime.multipart import MIMEMultipart
 import random
 
 # CẤU HÌNH EMAIL 
-SENDER_EMAIL = "thengudot1233@gmail.com"
-SENDER_PASSWORD = "qjxt jvxj ofjn horm" # Dán mật khẩu ứng dụng vào đây
+SENDER_EMAIL = os.getenv("SENDER_EMAIL","thengudot1233@gmail.com")
+SENDER_PASSWORD = os.getenv("SENDER_PASSWORD")
 
 def send_verification_email(receiver_email):
     # 1. Tạo mã xác thực ngẫu nhiên 6 số
